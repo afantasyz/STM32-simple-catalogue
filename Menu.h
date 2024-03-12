@@ -1,14 +1,17 @@
 #ifndef __MENU_H
 #define __MENU_H
 
+#include "widegt.h"
 
 typedef struct MenuNode
 {
 	uint8_t wId;
+	Widegt* w;
 	struct MenuNode* parentPtr;
 	struct MenuNode* *childPtr;
-	uint8_t MaxCap;
+	uint8_t isLeaf;
 	uint8_t MLength;
+	uint8_t MaxCap;
 }MenuNode;//菜单树一个节点
 
 typedef struct Menu
@@ -17,8 +20,10 @@ typedef struct Menu
 	MenuNode* nowNode;
 }Menu;//整个菜单目录
 
-void Menu_Init(Menu* m,uint8_t MaxCap);//初始化
-void Menu_InsertNode(MenuNode* pos,uint8_t wId,uint8_t MaxCap);//插入菜单节点
-void Menu_DeleteNode(Menu* m,MenuNode* pos);//删除节点
+void Menu_Init(Menu* m,uint8_t cap);//初始化
+void Menu_InsertNode(MenuNode* pos,uint8_t wId,uint8_t cap);//插入菜单节点
+void Menu_DeleteNode(Menu* m,MenuNode* pos);//删除当前节点的下一级目录
+void Menu_EnterWidegt(Menu* m,uint8_t Pnum);//进入选中菜单
+void Menu_ExitWidegt(Menu* m);//退出菜单
 
 #endif

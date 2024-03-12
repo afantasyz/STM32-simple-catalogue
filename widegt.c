@@ -15,8 +15,8 @@ void Widegt_Init(Widegt* w,char* headName)
 	strcpy(w->head,headName);
 	w->TextList=(TextNode*)malloc(sizeof(TextNode));
 	w->nowText=w->TextList;
-	OLED_ShowString(HeadLine,1,"               ");
 	OLED_ShowString(HeadLine,1,w->head);
+	OLED_ShowString(Line01,1,">>>");
 }
 
 void Widegt_Show(Widegt* w)
@@ -61,49 +61,6 @@ void Widegt_InsertTextNode(Widegt* w,char* newNode)
 	tepPtr->nextNode=w->TextList->nextNode;
 	tepPtr->lastNode=w->TextList;
 	w->TextList->nextNode=tepPtr;
-}
-
-Widegt* Widegt_Load(Widegt *w,uint8_t wId)
-{
-	Widegt_DeInit(w);
-	w=(Widegt*)malloc(sizeof(Widegt));
-	//???
-	if(wId==0)
-	{
-		Widegt_Init(w,"Main Menu");
-		Widegt_InsertTextNode(w,"Power Contorl");
-		Widegt_InsertTextNode(w,"Tim");
-		Widegt_InsertTextNode(w,"ADC");
-		Widegt_InsertTextNode(w,"Communicate");
-		Widegt_InsertTextNode(w,"Storage");
-		Widegt_InsertTextNode(w,"Peripheral");
-	}
-	//????
-	else if(wId==1)
-	{
-		Widegt_Init(w,"/Power Contorl");
-		Widegt_InsertTextNode(w,"BKP");
-		Widegt_InsertTextNode(w,"PWR");
-		Widegt_InsertTextNode(w,"WDG");
-		Widegt_InsertTextNode(w,"RTC");
-	}
-	else if(wId==2)
-	{
-		Widegt_Init(w,"/Tim");
-		Widegt_InsertTextNode(w,"BKP");
-		Widegt_InsertTextNode(w,"PWR");
-//		Widegt_InsertTextNode(w,"WDG");
-//		Widegt_InsertTextNode(w,"RTC");
-	}
-	//????
-	else if(wId==7)
-	{
-		Widegt_Init(w,"BKP");
-		Widegt_InsertTextNode(w,"01");
-	}
-	
-	Widegt_Show(w);
-	return w;
 }
 
 void Widegt_DeInit(Widegt* w)

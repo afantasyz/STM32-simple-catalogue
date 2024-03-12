@@ -18,10 +18,9 @@ typedef struct Widegt
 }Widegt;//单个界面的文本链表
 
 void Widegt_Show(Widegt* w);//显示文本
-void Widegt_DeInit(Widegt* w);
-Widegt* Widegt_Load(Widegt *w,uint8_t wId);
 void Widegt_Refresh(Widegt* w,uint8_t dir);//更新当前选中
 void Widegt_InsertTextNode(Widegt* w,char* newNode);//插入新的元素
 void Widegt_Init(Widegt* w,char* headName);//初始化
+void Widegt_DeInit(Widegt* w);//回收内存
 
 #endif
